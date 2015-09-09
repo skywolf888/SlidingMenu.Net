@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{3638D89C-9AC2-4C4B-805A-9E944AB9A624}</ProjectGuid>
+    <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Com.Jeremyfeinstein.SlidingMenu.Example</RootNamespace>
+    <AssemblyName>SlidingMenu.Net.Sample</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <AndroidApplication>true</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <AndroidUseLatestPlatformSdk>
+    </AndroidUseLatestPlatformSdk>
+    <DevInstrumentationEnabled>True</DevInstrumentationEnabled>
+    <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>True</AndroidUseSharedRuntime>
+    <AndroidLinkMode>None</AndroidLinkMode>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
+    <AndroidLinkMode>SdkOnly</AndroidLinkMode>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Mono.Android" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Xamarin.Android.Support.v4">
+      <HintPath>..\packages\Xamarin.Android.Support.v4.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v4.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.Android.Support.v7.AppCompat">
+      <HintPath>..\packages\Xamarin.Android.Support.v7.AppCompat.22.1.1.1\lib\MonoAndroid403\Xamarin.Android.Support.v7.AppCompat.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ExampleListActivity.cs" />
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.Designer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Main.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\values\Strings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="anim\CustomAnimation.cs" />
+    <Compile Include="anim\CustomScaleAnimation.cs" />
+    <Compile Include="anim\CustomSlideAnimation.cs" />
+    <Compile Include="anim\CustomZoomAnimation.cs" />
+    <Compile Include="AttachExample.cs" />
+    <Compile Include="BaseActivity.cs" />
+    <Compile Include="fragments\BirdActivity.cs" />
+    <Compile Include="fragments\BirdGridFragment.cs" />
+    <Compile Include="fragments\BirdMenuFragment.cs" />
+    <Compile Include="fragments\ColorFragment.cs" />
+    <Compile Include="fragments\ColorMenuFragment.cs" />
+    <Compile Include="fragments\FragmentChangeActivity.cs" />
+    <Compile Include="fragments\ResponsiveUIActivity.cs" />
+    <Compile Include="LeftAndRightActivity.cs" />
+    <Compile Include="PropertiesActivity.cs" />
+    <Content Include="Properties\AndroidManifest.xml" />
+    <AndroidResource Include="Resources\drawable\eagle.png" />
+    <AndroidResource Include="Resources\drawable\flamingo.png" />
+    <AndroidResource Include="Resources\drawable\heron.png" />
+    <AndroidResource Include="Resources\drawable\new_indicator.xml" />
+    <AndroidResource Include="Resources\drawable\octocat.png" />
+    <AndroidResource Include="Resources\drawable\octocat_scaled.xml" />
+    <AndroidResource Include="Resources\drawable\ostrich.png" />
+    <AndroidResource Include="Resources\drawable\peacock.png" />
+    <AndroidResource Include="Resources\drawable\penguin.png" />
+    <AndroidResource Include="Resources\drawable\shadow.xml" />
+    <AndroidResource Include="Resources\drawable\shadowright.xml" />
+    <AndroidResource Include="Resources\drawable\toucan.png" />
+    <AndroidResource Include="Resources\drawable\turkey.png" />
+    <AndroidResource Include="Resources\drawable\vulture.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_action_github.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-hdpi\indicator.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_action_github.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-ldpi\indicator.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_action_github.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-mdpi\indicator.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_action_github.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\ic_launcher.png" />
+    <AndroidResource Include="Resources\drawable-xhdpi\indicator.png" />
+    <AndroidResource Include="Resources\layout\content_frame.axml" />
+    <AndroidResource Include="Resources\layout\github_button.xml" />
+    <AndroidResource Include="Resources\layout\grid_item.axml" />
+    <AndroidResource Include="Resources\layout\list.axml" />
+    <AndroidResource Include="Resources\layout\list_grid.axml" />
+    <AndroidResource Include="Resources\layout\menu.axml" />
+    <AndroidResource Include="Resources\layout\menu_frame.axml" />
+    <AndroidResource Include="Resources\layout\menu_frame_two.axml" />
+    <AndroidResource Include="Resources\layout\pager.axml" />
+    <AndroidResource Include="Resources\layout\properties.axml" />
+    <AndroidResource Include="Resources\layout\responsive_content_frame.axml" />
+    <AndroidResource Include="Resources\layout\row.axml" />
+    <AndroidResource Include="Resources\layout-large-land\responsive_content_frame.axml" />
+    <AndroidResource Include="Resources\layout-xlarge\responsive_content_frame.xml" />
+    <AndroidResource Include="Resources\menu\example_list.xml" />
+    <AndroidResource Include="Resources\menu\main.xml" />
+    <AndroidResource Include="Resources\values\array.xml" />
+    <AndroidResource Include="Resources\values\colors.xml" />
+    <AndroidResource Include="Resources\values\dimens.xml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values-land\dimens.xml" />
+    <AndroidResource Include="Resources\values-large\dimens.xml" />
+    <AndroidResource Include="Resources\values-large-land\dimens.xml" />
+    <AndroidResource Include="Resources\values-xlarge\dimens.xml" />
+    <AndroidResource Include="Resources\values-xlarge-land\dimens.xml" />
+    <AndroidResource Include="Resources\xml\main.xml" />
+    <Compile Include="SampleListFragment.cs" />
+    <Compile Include="SlidingContent.cs" />
+    <Compile Include="SlidingTitleBar.cs" />
+    <Compile Include="Util.cs" />
+    <Compile Include="ViewPagerActivity.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SlidingMenu.Net\SlidingMenu.Net.csproj">
+      <Project>{351a5416-7ab3-4ad0-b084-accf9acd2b72}</Project>
+      <Name>SlidingMenu.Net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+     Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

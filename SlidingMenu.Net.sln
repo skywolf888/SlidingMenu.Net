@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingMenu.Net", "SlidingMenu.Net\SlidingMenu.Net.csproj", "{351A5416-7AB3-4AD0-B084-ACCF9ACD2B72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlidingMenu.Net.Sample", "SlidingMenu.Net.Sample\SlidingMenu.Net.Sample.csproj", "{3638D89C-9AC2-4C4B-805A-9E944AB9A624}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{351A5416-7AB3-4AD0-B084-ACCF9ACD2B72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{351A5416-7AB3-4AD0-B084-ACCF9ACD2B72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{351A5416-7AB3-4AD0-B084-ACCF9ACD2B72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{351A5416-7AB3-4AD0-B084-ACCF9ACD2B72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3638D89C-9AC2-4C4B-805A-9E944AB9A624}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
