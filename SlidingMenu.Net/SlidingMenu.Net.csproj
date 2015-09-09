@@ -74,7 +74,7 @@
     <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\CanvasTransformerBuilder.cs" />
     <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\CustomViewAbove.cs" />
     <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\CustomViewBehind.cs" />
-    <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\MenuInterface.cs" />
+    <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\IMenuInterface.cs" />
     <Compile Include="Com\Jeremyfeinstein\SlidingMenu\Lib\SlidingMenu.cs" />
     <AndroidResource Include="Resources\layout\slidingmenumain.xml" />
     <AndroidResource Include="Resources\Values\attrs.xml" />
