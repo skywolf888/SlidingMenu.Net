@@ -48,12 +48,12 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example
 			
             public void OnPageScrollStateChanged(int state)
             {
-                throw new System.NotImplementedException();
+                 
             }
 
             public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
-                throw new System.NotImplementedException();
+                 
             }
 
             public void OnPageSelected(int position)
