@@ -247,7 +247,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             //        }
             //    }
             //});
-            setInternalPageChangeListener(new InternalPageChangeListener(mViewBehind));
+            //setInternalPageChangeListener(new InternalPageChangeListener(mViewBehind));
             float density = context.Resources.DisplayMetrics.Density;
             mFlingDistance = (int)(MIN_DISTANCE_FOR_FLING * density);
         }
