@@ -29,7 +29,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
         {
             base.OnCreate(savedInstanceState);
             mHelper = new SlidingActivityHelper(this);
-            mHelper.onCreate(savedInstanceState);
+            mHelper.OnCreate(savedInstanceState);
         }
 
         /* (non-Javadoc)
@@ -39,7 +39,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
         protected override void OnPostCreate(Bundle savedInstanceState)
         {
             base.OnPostCreate(savedInstanceState);
-            mHelper.onPostCreate(savedInstanceState);
+            mHelper.OnPostCreate(savedInstanceState);
         }
 
         /* (non-Javadoc)
@@ -51,7 +51,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
             View v = base.FindViewById(id);
             if (v != null)
                 return v;
-            return mHelper.findViewById(id);
+            return mHelper.FindViewById(id);
         }
 
         /* (non-Javadoc)

@@ -38,6 +38,8 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example.fragments
             ListAdapter = colorAdapter;
         }
 
+         
+
         //@Override
         public override void OnListItemClick(ListView lv, View v, int position, long id)
         {

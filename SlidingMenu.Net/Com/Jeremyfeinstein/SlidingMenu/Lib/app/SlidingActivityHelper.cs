@@ -51,7 +51,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
          *
          * @param savedInstanceState the saved instance state (unused)
          */
-        public void onCreate(Bundle savedInstanceState)
+        public void OnCreate(Bundle savedInstanceState)
         {
             mSlidingMenu = (SlidingMenu)LayoutInflater.From(mActivity).Inflate(Resource.Layout.slidingmenumain, null);
         }
@@ -61,7 +61,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
          *
          * @param savedInstanceState the saved instance state (unused)
          */
-        public void onPostCreate(Bundle savedInstanceState)
+        public void OnPostCreate(Bundle savedInstanceState)
         {
             if (mViewBehind == null || mViewAbove == null)
             {
@@ -159,7 +159,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib.app
          * @param id the resource id of the desired view
          * @return The view if found or null otherwise.
          */
-        public View findViewById(int id)
+        public View FindViewById(int id)
         {
             View v;
             if (mSlidingMenu != null)

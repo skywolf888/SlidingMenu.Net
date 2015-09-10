@@ -21,7 +21,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example.anim
     {
 
 
-        class ZoomClass : Java.Lang.Object, CanvasTransformer
+        class ZoomClass : Java.Lang.Object, ICanvasTransformer
         {
 
             public void transformCanvas(Canvas canvas, float percentOpen)

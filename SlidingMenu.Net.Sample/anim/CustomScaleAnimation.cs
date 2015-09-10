@@ -16,7 +16,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example.anim
     public class CustomScaleAnimation : CustomAnimation
     {
 
-        class ScaleClass : Java.Lang.Object, CanvasTransformer
+        class ScaleClass : Java.Lang.Object, ICanvasTransformer
         {
 
             public void transformCanvas(Canvas canvas, float percentOpen)

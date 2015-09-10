@@ -48,7 +48,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
     /**
          * Callback interface for responding to changing state of the selected page.
          */
-    public interface OnPageChangeListener
+    public interface IOnPageChangeListener
     {
 
         /**
@@ -60,7 +60,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * @param positionOffset Value from [0, 1) indicating the offset from the page at position.
          * @param positionOffsetPixels Value in pixels indicating the offset from position.
          */
-        void onPageScrolled(int position, float positionOffset, int positionOffsetPixels);
+        void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels);
 
         /**
          * This method will be invoked when a new page becomes selected. Animation is not
@@ -68,7 +68,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param position Position index of the new selected page.
          */
-        void onPageSelected(int position);
+        void OnPageSelected(int position);
 
     }
 
@@ -76,7 +76,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
     {
 
         private static readonly string TAG = "CustomViewAbove";
-        private static readonly bool DEBUG = false;
+        private static readonly bool DEBUG = true;
 
         private static readonly bool USE_CACHE = false;
 
@@ -140,13 +140,13 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         //	private int mMode;
         private bool mEnabled = true;
 
-        private OnPageChangeListener mOnPageChangeListener;
-        private OnPageChangeListener mInternalPageChangeListener;
+        private IOnPageChangeListener mOnPageChangeListener;
+        private IOnPageChangeListener mInternalPageChangeListener;
 
         //	private OnCloseListener mCloseListener;
         //	private OnOpenListener mOpenListener;
-        private OnClosedListener mClosedListener;
-        private OnOpenedListener mOpenedListener;
+        private IOnClosedListener mClosedListener;
+        private IOnOpenedListener mOpenedListener;
 
         private List<View> mIgnoredViews = new List<View>();
 
@@ -159,20 +159,20 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * implementations of each method. Extend this if you do not intend to override
          * every method of {@link OnPageChangeListener}.
          */
-        public class SimpleOnPageChangeListener : Java.Lang.Object,OnPageChangeListener
+        public class SimpleOnPageChangeListener : Java.Lang.Object,IOnPageChangeListener
         {
 
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
                 // This space for rent
             }
 
-            public virtual void onPageSelected(int position)
+            public virtual void OnPageSelected(int position)
             {
                 // This space for rent
             }
 
-            public void onPageScrollStateChanged(int state)
+            public void OnPageScrollStateChanged(int state)
             {
                 // This space for rent
             }
@@ -188,7 +188,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                 // TODO: Complete member initialization
                 this.mViewBehind = mViewBehind;
             }
-            public override void onPageSelected(int position)
+            public override void OnPageSelected(int position)
             {
                 if (mViewBehind != null) {
                     switch (position)
@@ -300,11 +300,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             int destX = getDestScrollX(mCurItem);
             if (dispatchSelected && mOnPageChangeListener != null)
             {
-                mOnPageChangeListener.onPageSelected(item);
+                mOnPageChangeListener.OnPageSelected(item);
             }
             if (dispatchSelected && mInternalPageChangeListener != null)
             {
-                mInternalPageChangeListener.onPageSelected(item);
+                mInternalPageChangeListener.OnPageSelected(item);
             }
             if (smoothScroll)
             {
@@ -323,7 +323,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param listener Listener to set
          */
-        public void setOnPageChangeListener(OnPageChangeListener listener)
+        public void setOnPageChangeListener(IOnPageChangeListener listener)
         {
             mOnPageChangeListener = listener;
         }
@@ -336,12 +336,12 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             mCloseListener = l;
         }
          */
-        public void setOnOpenedListener(OnOpenedListener l)
+        public void setOnOpenedListener(IOnOpenedListener l)
         {
             mOpenedListener = l;
         }
 
-        public void setOnClosedListener(OnClosedListener l)
+        public void setOnClosedListener(IOnClosedListener l)
         {
             mClosedListener = l;
         }
@@ -352,9 +352,9 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * @param listener Listener to set
          * @return The old listener that was set, if any.
          */
-        OnPageChangeListener setInternalPageChangeListener(OnPageChangeListener listener)
+        IOnPageChangeListener setInternalPageChangeListener(IOnPageChangeListener listener)
         {
-            OnPageChangeListener oldListener = mInternalPageChangeListener;
+            IOnPageChangeListener oldListener = mInternalPageChangeListener;
             mInternalPageChangeListener = listener;
             return oldListener;
         }
@@ -556,6 +556,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         public void setCustomViewBehind(CustomViewBehind cvb)
         {
             mViewBehind = cvb;
+            setInternalPageChangeListener(new InternalPageChangeListener(mViewBehind));
         }
 
         //@Override
@@ -658,11 +659,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         {
             if (mOnPageChangeListener != null)
             {
-                mOnPageChangeListener.onPageScrolled(position, offset, offsetPixels);
+                mOnPageChangeListener.OnPageScrolled(position, offset, offsetPixels);
             }
             if (mInternalPageChangeListener != null)
             {
-                mInternalPageChangeListener.onPageScrolled(position, offset, offsetPixels);
+                mInternalPageChangeListener.OnPageScrolled(position, offset, offsetPixels);
             }
         }
 
@@ -758,8 +759,8 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         //@Override
         public override bool OnInterceptTouchEvent(MotionEvent ev)
-        {
-
+        {     
+        
             if (!mEnabled)
                 return false;
 
@@ -786,7 +787,9 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                     mActivePointerId = MotionEventCompat.GetPointerId(ev, index);
                     if (mActivePointerId == INVALID_POINTER)
                         break;
-                    mLastMotionX = mInitialMotionX = MotionEventCompat.GetX(ev, index);
+                    
+                    mLastMotionX = MotionEventCompat.GetX(ev, index);
+                    mInitialMotionX = mLastMotionX;
                     mLastMotionY = MotionEventCompat.GetY(ev, index);
                     if (thisTouchAllowed(ev))
                     {
@@ -814,7 +817,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                     mVelocityTracker = VelocityTracker.Obtain();
                 }
                 mVelocityTracker.AddMovement(ev);
-            }
+            }             
             return mIsBeingDragged || mQuickReturn;
         }
 

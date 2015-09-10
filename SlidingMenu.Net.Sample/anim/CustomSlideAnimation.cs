@@ -31,7 +31,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example.anim
 
         private static IInterpolator interp = new interpclass();
 
-        class SlideClass : Java.Lang.Object, CanvasTransformer
+        class SlideClass : Java.Lang.Object, ICanvasTransformer
         {
 
             public void transformCanvas(Canvas canvas, float percentOpen)

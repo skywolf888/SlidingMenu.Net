@@ -21,9 +21,9 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example.anim
     public abstract class CustomAnimation : BaseActivity
     {
 
-        private CanvasTransformer mTransformer;
+        private ICanvasTransformer mTransformer;
 
-        public CustomAnimation(int titleRes, CanvasTransformer transformer)
+        public CustomAnimation(int titleRes, ICanvasTransformer transformer)
             : base(titleRes)
         {
 

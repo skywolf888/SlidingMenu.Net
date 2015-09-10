@@ -51,7 +51,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * the onOpen event occurs, that object's appropriate
          * method is invoked
          */
-    public interface OnOpenListener
+    public interface IOnOpenListener
     {
 
         /**
@@ -71,7 +71,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
      *
      * @see OnOpenedEvent
      */
-    public interface OnOpenedListener
+    public interface IOnOpenedListener
     {
 
         /**
@@ -91,7 +91,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
      *
      * @see OnCloseEvent
      */
-    public interface OnCloseListener
+    public interface IOnCloseListener
     {
 
         /**
@@ -111,7 +111,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
      *
      * @see OnClosedEvent
      */
-    public interface OnClosedListener
+    public interface IOnClosedListener
     {
 
         /**
@@ -123,7 +123,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
     /**
      * The Interface CanvasTransformer.
      */
-    public interface CanvasTransformer
+    public interface ICanvasTransformer
     {
 
         /**
@@ -133,6 +133,13 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * @param percentOpen the percent open
          */
         void transformCanvas(Canvas canvas, float percentOpen);
+    }
+
+    public enum SlidingMenuMode
+    {
+        LEFT=0,
+        RIGHT=1,
+        LEFT_RIGHT = 2
     }
 
     public class SlidingMenu : RelativeLayout
@@ -175,11 +182,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         private CustomViewBehind mViewBehind;
 
-        private OnOpenListener mOpenListener;
+        private IOnOpenListener mOpenListener;
 
-        private OnOpenListener mSecondaryOpenListner;
+        private IOnOpenListener mSecondaryOpenListner;
 
-        private OnCloseListener mCloseListener;
+        private IOnCloseListener mCloseListener;
 
 
 
@@ -219,28 +226,28 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         }
 
-        class PageChangeClass : Java.Lang.Object, OnPageChangeListener
+        class PageChangeClass : Java.Lang.Object, IOnPageChangeListener
         {
             public const int POSITION_OPEN = 0;
             public const int POSITION_CLOSE = 1;
             public const int POSITION_SECONDARY_OPEN = 2;
-            private OnOpenListener mOpenListener;
-            private OnCloseListener mCloseListener;
-            private OnOpenListener mSecondaryOpenListner;
+            private IOnOpenListener mOpenListener;
+            private IOnCloseListener mCloseListener;
+            private IOnOpenListener mSecondaryOpenListner;
 
-            public PageChangeClass(OnOpenListener mOpenListener, OnCloseListener mCloseListener, OnOpenListener mSecondaryOpenListner)
+            public PageChangeClass(IOnOpenListener mOpenListener, IOnCloseListener mCloseListener, IOnOpenListener mSecondaryOpenListner)
             {
                 // TODO: Complete member initialization
                 this.mOpenListener = mOpenListener;
                 this.mCloseListener = mCloseListener;
                 this.mSecondaryOpenListner = mSecondaryOpenListner;
             }
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
+            public void OnPageScrolled(int position, float positionOffset, int positionOffsetPixels)
             {
                  
             }
 
-            public void onPageSelected(int position)
+            public void OnPageSelected(int position)
             {
                 if (position == POSITION_OPEN && mOpenListener != null)
                 {
@@ -824,7 +831,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param t the new behind canvas transformer
          */
-        public void setBehindCanvasTransformer(CanvasTransformer t)
+        public void setBehindCanvasTransformer(ICanvasTransformer t)
         {
             mViewBehind.setCanvasTransformer(t);
         }
@@ -1029,7 +1036,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param listener the new OnOpenListener
          */
-        public void setOnOpenListener(OnOpenListener listener)
+        public void setOnOpenListener(IOnOpenListener listener)
         {
             //mViewAbove.setOnOpenListener(listener);
             mOpenListener = listener;
@@ -1042,7 +1049,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          * @param listener the new OnOpenListener
          */
 
-        public void setSecondaryOnOpenListner(OnOpenListener listener)
+        public void setSecondaryOnOpenListner(IOnOpenListener listener)
         {
             mSecondaryOpenListner = listener;
         }
@@ -1052,7 +1059,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param listener the new setOnCloseListener
          */
-        public void setOnCloseListener(OnCloseListener listener)
+        public void setOnCloseListener(IOnCloseListener listener)
         {
             //mViewAbove.setOnCloseListener(listener);
             mCloseListener = listener;
@@ -1063,7 +1070,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param listener the new OnOpenedListener
          */
-        public void setOnOpenedListener(OnOpenedListener listener)
+        public void setOnOpenedListener(IOnOpenedListener listener)
         {
             mViewAbove.setOnOpenedListener(listener);
         }
@@ -1073,7 +1080,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          *
          * @param listener the new OnClosedListener
          */
-        public void setOnClosedListener(OnClosedListener listener)
+        public void setOnClosedListener(IOnClosedListener listener)
         {
             mViewAbove.setOnClosedListener(listener);
         }
@@ -1205,18 +1212,18 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                 //        }
                 //    }
                 //});
-                Handler.Post(new runclass(this, layerType));
+                Handler.Post(new ManageLayersRunnable(this, layerType));
             }
         }
 
-        class runclass : Java.Lang.Object, IRunnable
+        class ManageLayersRunnable : Java.Lang.Object, IRunnable
         {
             private SlidingMenu slidingMenu;
             private LayerType layerType;
 
 
 
-            public runclass(SlidingMenu slidingMenu, LayerType layerType)
+            public ManageLayersRunnable(SlidingMenu slidingMenu, LayerType layerType)
             {
                 // TODO: Complete member initialization
                 this.slidingMenu = slidingMenu;

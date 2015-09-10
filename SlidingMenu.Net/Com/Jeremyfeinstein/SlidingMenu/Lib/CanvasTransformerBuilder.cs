@@ -15,7 +15,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
     public class CanvasTransformerBuilder
     {
 
-        private CanvasTransformer mTrans;
+        private ICanvasTransformer mTrans;
 
         class Interpolator1 : Java.Lang.Object, IInterpolator
         {
@@ -35,7 +35,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         private static IInterpolator lin = new Interpolator1();
 
 
-        private class mTransClass : Java.Lang.Object, CanvasTransformer
+        private class mTransClass : Java.Lang.Object, ICanvasTransformer
         {
 
             public void transformCanvas(Canvas canvas, float percentOpen)
@@ -50,16 +50,16 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                 mTrans = new mTransClass();
         }
 
-        public CanvasTransformer zoom(int openedX, int closedX,
+        public ICanvasTransformer zoom(int openedX, int closedX,
                   int openedY, int closedY,
                   int px, int py)
         {
             return zoom(openedX, closedX, openedY, closedY, px, py, lin);
         }
 
-        class mTrans2 : Java.Lang.Object, CanvasTransformer
+        class mTrans2 : Java.Lang.Object, ICanvasTransformer
         {
-            private CanvasTransformer mtrans;
+            private ICanvasTransformer mtrans;
             private IInterpolator minterp;
             private Canvas mcanvas;
             int mopenedX;
@@ -68,7 +68,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             int mclosedY;
             int mpx;
             int mpy;
-            public mTrans2(CanvasTransformer trans, IInterpolator interp, int openedX, int closedX,
+            public mTrans2(ICanvasTransformer trans, IInterpolator interp, int openedX, int closedX,
                   int openedY, int closedY,
                   int px, int py)
             {
@@ -91,7 +91,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             }
         }
 
-        public CanvasTransformer zoom(int openedX, int closedX,
+        public ICanvasTransformer zoom(int openedX, int closedX,
                   int openedY, int closedY,
                   int px, int py, IInterpolator interp)
         {
@@ -108,22 +108,22 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             return mTrans;
         }
 
-        public CanvasTransformer rotate(int openedDeg, int closedDeg,
+        public ICanvasTransformer rotate(int openedDeg, int closedDeg,
                   int px, int py)
         {
             return rotate(openedDeg, closedDeg, px, py, lin);
         }
 
-        class mTrans3 : Java.Lang.Object, CanvasTransformer
+        class mTrans3 : Java.Lang.Object, ICanvasTransformer
         {
-            private CanvasTransformer mTrans;
+            private ICanvasTransformer mTrans;
             private IInterpolator interp;
             private int openedDeg;
             private int closedDeg;
             private int px;
             private int py;
 
-            public mTrans3(CanvasTransformer mTrans, IInterpolator interp, int openedDeg, int closedDeg, int px, int py)
+            public mTrans3(ICanvasTransformer mTrans, IInterpolator interp, int openedDeg, int closedDeg, int px, int py)
             {
                 // TODO: Complete member initialization
                 this.mTrans = mTrans;
@@ -142,7 +142,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             }
         }
 
-        public CanvasTransformer rotate(int openedDeg, int closedDeg,
+        public ICanvasTransformer rotate(int openedDeg, int closedDeg,
                   int px, int py, IInterpolator interp)
         {
             initTransformer();
@@ -158,23 +158,23 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             return mTrans;
         }
 
-        public CanvasTransformer translate(int openedX, int closedX,
+        public ICanvasTransformer translate(int openedX, int closedX,
                   int openedY, int closedY)
         {
             return translate(openedX, closedX, openedY, closedY, lin);
         }
 
 
-        class mTrans4 : Java.Lang.Object, CanvasTransformer
+        class mTrans4 : Java.Lang.Object, ICanvasTransformer
         {
-            private CanvasTransformer mTrans;
+            private ICanvasTransformer mTrans;
             private IInterpolator interp;
             private int openedX;
             private int closedX;
             private int openedY;
             private int closedY;
 
-            public mTrans4(CanvasTransformer mTrans, IInterpolator interp, int openedX, int closedX, int openedY, int closedY)
+            public mTrans4(ICanvasTransformer mTrans, IInterpolator interp, int openedX, int closedX, int openedY, int closedY)
             {
                 // TODO: Complete member initialization
                 this.mTrans = mTrans;
@@ -194,7 +194,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         }
 
-        public CanvasTransformer translate(int openedX, int closedX,
+        public ICanvasTransformer translate(int openedX, int closedX,
                   int openedY, int closedY, IInterpolator interp)
         {
             initTransformer();
@@ -210,12 +210,12 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             return mTrans;
         }
 
-        class mTrans5 : Java.Lang.Object, CanvasTransformer
+        class mTrans5 : Java.Lang.Object, ICanvasTransformer
         {
-            private CanvasTransformer mTrans;
-            private CanvasTransformer t;
+            private ICanvasTransformer mTrans;
+            private ICanvasTransformer t;
 
-            public mTrans5(CanvasTransformer mTrans, CanvasTransformer t)
+            public mTrans5(ICanvasTransformer mTrans, ICanvasTransformer t)
             {
                 // TODO: Complete member initialization
                 this.mTrans = mTrans;
@@ -229,7 +229,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             }
         }
 
-        public CanvasTransformer concatTransformer(CanvasTransformer t)
+        public ICanvasTransformer concatTransformer(ICanvasTransformer t)
         {
             initTransformer();
             //mTrans = new CanvasTransformer() {

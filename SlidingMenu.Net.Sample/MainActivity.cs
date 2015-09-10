@@ -6,11 +6,13 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 using Com.Jeremyfeinstein.SlidingMenu.Example;
+using Android.Support.V4.App;
+using Com.Jeremyfeinstein.SlidingMenu.Example.fragments;
 
 namespace SlidingMenu.Net.Sample
 {
     [Activity(Label = "SlidingMenu.Net.Sample", MainLauncher = false, Icon = "@drawable/icon")]
-    public class MainActivity : Activity
+    public class MainActivity : FragmentActivity
     {
         int count = 1;
 
@@ -26,7 +28,17 @@ namespace SlidingMenu.Net.Sample
             //Button button = FindViewById<Button>(Resource.Id.MyButton);
 
             //button.Click += delegate { button.Text = string.Format("{0} clicks!", count++); };
+
+                SupportFragmentManager
+            .BeginTransaction()
+            .Replace(Resource.Id.menu_frame, new BirdMenuFragment())
+            .Commit();
+
         }
+
+        
+
+         
     }
 }
 
