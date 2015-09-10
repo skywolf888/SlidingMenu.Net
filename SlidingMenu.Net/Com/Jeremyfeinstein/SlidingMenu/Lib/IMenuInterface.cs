@@ -14,10 +14,10 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
     public interface IMenuInterface
     {
 
-        void scrollBehindTo(int x, int y,
+        void ScrollBehindTo(int x, int y,
               CustomViewBehind cvb, float scrollScale);
 
-        int getMenuLeft(CustomViewBehind cvb, View content);
+        int GetMenuLeft(CustomViewBehind cvb, View content);
 
         int getAbsLeftBound(CustomViewBehind cvb, View content);
 
@@ -33,12 +33,12 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         bool menuOpenSlideAllowed(int x);
 
-        void drawShadow(Canvas canvas, Drawable shadow, int width);
+        void DrawShadow(Canvas canvas, Drawable shadow, int width);
 
-        void drawFade(Canvas canvas, int alpha,
+        void DrawFade(Canvas canvas, int alpha,
               CustomViewBehind cvb, View content);
 
-        void drawSelector(View content, Canvas canvas, float percentOpen);
+        void DrawSelector(View content, Canvas canvas, float percentOpen);
 
     }
 }

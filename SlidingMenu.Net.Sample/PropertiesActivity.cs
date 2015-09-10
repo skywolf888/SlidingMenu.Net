@@ -20,6 +20,7 @@ using Android.OS;
 using Android.Widget;
 using SSlidingMenu = Com.Jeremyfeinstein.SlidingMenu.Lib.SlidingMenu;
 using R = Com.Jeremyfeinstein.SlidingMenu.Example.Resource;
+using Com.Jeremyfeinstein.SlidingMenu.Lib;
 
 
 namespace Com.Jeremyfeinstein.SlidingMenu.Example
@@ -205,7 +206,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example
             {
                 if (isChecked)
                     slidingMenu.setShadowDrawable(
-                            slidingMenu.getMode() == SSlidingMenu.LEFT ?
+                            slidingMenu.Mode == SlidingMenuMode.LEFT ?
                                     R.Drawable.shadow : R.Drawable.shadowright);
                 else
                     slidingMenu.setShadowDrawable(null);
@@ -343,15 +344,15 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example
             switch (checkedId)
             {
                 case Resource.Id.left:
-                    sm.setMode(SSlidingMenu.LEFT);
+                    sm.Mode=SlidingMenuMode.LEFT;
                     sm.setShadowDrawable(Resource.Drawable.shadow);
                     break;
                 case Resource.Id.right:
-                    sm.setMode(SSlidingMenu.RIGHT);
+                    sm.Mode=SlidingMenuMode.RIGHT;
                     sm.setShadowDrawable(Resource.Drawable.shadowright);
                     break;
                 case Resource.Id.left_right:
-                    sm.setMode(SSlidingMenu.LEFT_RIGHT);
+                    sm.Mode=SlidingMenuMode.LEFT_RIGHT;
                     sm.setSecondaryMenu(Resource.Layout.menu_frame_two);
                     SupportFragmentManager
                     .BeginTransaction()

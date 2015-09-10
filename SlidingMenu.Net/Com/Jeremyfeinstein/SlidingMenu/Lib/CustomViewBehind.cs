@@ -179,7 +179,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                 mSecondaryContent.Measure(contentWidth, contentHeight);
         }
 
-        private int mMode;
+        private SlidingMenuMode mMode;
         private bool mFadeEnabled;
         private readonly Paint mFadePaint = new Paint();
         private float mScrollScale;
@@ -187,23 +187,39 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         private Drawable mSecondaryShadowDrawable;
         private int mShadowWidth;
         private float mFadeDegree;
-       
 
-        public void setMode(int mode)
+
+        //public void setMode(SlidingMenuMode mode)
+        //{
+        //    if (mode == SlidingMenuMode.LEFT || mode == SlidingMenuMode.RIGHT)
+        //    {
+        //        if (mContent != null)
+        //            mContent.Visibility = ViewStates.Visible;
+        //        if (mSecondaryContent != null)
+        //            mSecondaryContent.Visibility = ViewStates.Invisible;
+        //    }
+        //    mMode = mode;
+        //}
+
+        //public SlidingMenuMode getMode()
+        //{
+        //    return mMode;
+        //}
+
+        public SlidingMenuMode Mode
         {
-            if (mode == SlidingMenu.LEFT || mode == SlidingMenu.RIGHT)
+            get { return mMode; }
+            set
             {
-                if (mContent != null)
-                    mContent.Visibility = ViewStates.Visible;
-                if (mSecondaryContent != null)
-                    mSecondaryContent.Visibility = ViewStates.Invisible;
+                if (value == SlidingMenuMode.LEFT || value == SlidingMenuMode.RIGHT)
+                {
+                    if (mContent != null)
+                        mContent.Visibility = ViewStates.Visible;
+                    if (mSecondaryContent != null)
+                        mSecondaryContent.Visibility = ViewStates.Invisible;
+                }
+                mMode = value;
             }
-            mMode = mode;
-        }
-
-        public int getMode()
-        {
-            return mMode;
         }
 
         public void setScrollScale(float scrollScale)
@@ -249,11 +265,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         public int getMenuPage(int page)
         {
             page = (page > 1) ? 2 : ((page < 1) ? 0 : page);
-            if (mMode == SlidingMenu.LEFT && page > 1)
+            if (mMode == SlidingMenuMode.LEFT && page > 1)
             {
                 return 0;
             }
-            else if (mMode == SlidingMenu.RIGHT && page < 1)
+            else if (mMode == SlidingMenuMode.RIGHT && page < 1)
             {
                 return 2;
             }
@@ -266,18 +282,18 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         public void scrollBehindTo(View content, int x, int y)
         {
             ViewStates vis = ViewStates.Visible;
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 if (x >= content.Left) vis = ViewStates.Invisible;
                 ScrollTo((int)((x + getBehindWidth()) * mScrollScale), y);
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 if (x <= content.Left) vis = ViewStates.Invisible;
                 ScrollTo((int)(getBehindWidth() - Width +
                         (x - getBehindWidth()) * mScrollScale), y);
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 mContent.Visibility = x >= content.Left ? ViewStates.Invisible : ViewStates.Visible;
                 mSecondaryContent.Visibility = x <= content.Left ? ViewStates.Invisible : ViewStates.Visible;
@@ -299,7 +315,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public int getMenuLeft(View content, int page)
         {
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 switch (page)
                 {
@@ -309,7 +325,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                         return content.Left;
                 }
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 switch (page)
                 {
@@ -319,7 +335,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                         return content.Left + getBehindWidth();
                 }
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 switch (page)
                 {
@@ -334,11 +350,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public int getAbsLeftBound(View content)
         {
-            if (mMode == SlidingMenu.LEFT || mMode == SlidingMenu.LEFT_RIGHT)
+            if (mMode == SlidingMenuMode.LEFT || mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 return content.Left - getBehindWidth();
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 return content.Left;
             }
@@ -347,11 +363,11 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public int getAbsRightBound(View content)
         {
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 return content.Left;
             }
-            else if (mMode == SlidingMenu.RIGHT || mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT || mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 return content.Left + getBehindWidth();
             }
@@ -362,15 +378,15 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         {
             int left = content.Left;
             int right = content.Right;
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 return (x >= left && x <= mMarginThreshold + left);
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 return (x <= right && x >= right - mMarginThreshold);
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 return (x >= left && x <= mMarginThreshold + left) ||
                         (x <= right && x >= right - mMarginThreshold);
@@ -397,12 +413,12 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public bool menuTouchInQuickReturn(View content, int currPage, float x)
         {
-            if (mMode == SlidingMenu.LEFT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 0))
+            if (mMode == SlidingMenuMode.LEFT || (mMode == SlidingMenuMode.LEFT_RIGHT && currPage == 0))
             {
 
                 return x >= content.Left;
             }
-            else if (mMode == SlidingMenu.RIGHT || (mMode == SlidingMenu.LEFT_RIGHT && currPage == 2))
+            else if (mMode == SlidingMenuMode.RIGHT || (mMode == SlidingMenuMode.LEFT_RIGHT && currPage == 2))
             {
                 return x <= content.Right;
             }
@@ -411,15 +427,15 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public bool menuClosedSlideAllowed(float dx)
         {
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 return dx > 0;
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 return dx < 0;
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 return true;
             }
@@ -428,15 +444,15 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
 
         public bool menuOpenSlideAllowed(float dx)
         {
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 return dx < 0;
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 return dx > 0;
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 return true;
             }
@@ -447,15 +463,15 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
         {
             if (mShadowDrawable == null || mShadowWidth <= 0) return;
             int left = 0;
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 left = content.Left - mShadowWidth;
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 left = content.Right;
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 if (mSecondaryShadowDrawable != null)
                 {
@@ -476,17 +492,17 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             mFadePaint.Color = Color.Argb(alpha, 0, 0, 0);
             int left = 0;
             int right = 0;
-            if (mMode == SlidingMenu.LEFT)
+            if (mMode == SlidingMenuMode.LEFT)
             {
                 left = content.Left - getBehindWidth();
                 right = content.Left;
             }
-            else if (mMode == SlidingMenu.RIGHT)
+            else if (mMode == SlidingMenuMode.RIGHT)
             {
                 left = content.Right;
                 right = content.Right + getBehindWidth();
             }
-            else if (mMode == SlidingMenu.LEFT_RIGHT)
+            else if (mMode == SlidingMenuMode.LEFT_RIGHT)
             {
                 left = content.Left - getBehindWidth();
                 right = content.Left;
@@ -512,14 +528,14 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
                     canvas.Save();
                     int left, right, offset;
                     offset = (int)(mSelectorDrawable.Width * openPercent);
-                    if (mMode == SlidingMenu.LEFT)
+                    if (mMode == SlidingMenuMode.LEFT)
                     {
                         right = content.Left;
                         left = right - offset;
                         canvas.ClipRect(left, 0, right, Height);
                         canvas.DrawBitmap(mSelectorDrawable, left, getSelectorTop(), null);
                     }
-                    else if (mMode == SlidingMenu.RIGHT)
+                    else if (mMode == SlidingMenuMode.RIGHT)
                     {
                         left = content.Right;
                         right = left + offset;

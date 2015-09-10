@@ -13,6 +13,7 @@ using Android.OS;
 using SSlidingMenu=Com.Jeremyfeinstein.SlidingMenu.Lib.SlidingMenu;
  
 using Android.App;
+using Com.Jeremyfeinstein.SlidingMenu.Lib;
 
 namespace Com.Jeremyfeinstein.SlidingMenu.Example
 {
@@ -29,7 +30,7 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            getSlidingMenu().setMode(SSlidingMenu.LEFT_RIGHT);
+            getSlidingMenu().Mode=SlidingMenuMode.LEFT_RIGHT;
             getSlidingMenu().setTouchModeAbove(SSlidingMenu.TOUCHMODE_FULLSCREEN);
 
             SetContentView(Resource.Layout.content_frame);

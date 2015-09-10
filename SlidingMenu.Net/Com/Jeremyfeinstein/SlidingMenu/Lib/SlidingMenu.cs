@@ -166,17 +166,17 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
          */
         public const int TOUCHMODE_NONE = 2;
 
-        /** Constant value for use with setMode(). Puts the menu to the left of the content.
-         */
-        public static readonly int LEFT = 0;
+        ///** Constant value for use with setMode(). Puts the menu to the left of the content.
+        // */
+        //public static readonly int LEFT = 0;
 
-        /** Constant value for use with setMode(). Puts the menu to the right of the content.
-         */
-        public static readonly int RIGHT = 1;
+        ///** Constant value for use with setMode(). Puts the menu to the right of the content.
+        // */
+        //public static readonly int RIGHT = 1;
 
-        /** Constant value for use with setMode(). Puts menus to the left and right of the content.
-         */
-        public static readonly int LEFT_RIGHT = 2;
+        ///** Constant value for use with setMode(). Puts menus to the left and right of the content.
+        // */
+        //public static readonly int LEFT_RIGHT = 2;
 
         private CustomViewAbove mViewAbove;
 
@@ -309,8 +309,8 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             // now style everything!
             TypedArray ta = context.ObtainStyledAttributes(attrs, Resource.Styleable.SlidingMenu);
             // set the above and behind views if defined in xml
-            int mode = ta.GetInt(Resource.Styleable.SlidingMenu_mode, LEFT);
-            setMode(mode);
+            SlidingMenuMode mode = (SlidingMenuMode)ta.GetInt(Resource.Styleable.SlidingMenu_mode, (int)SlidingMenuMode.LEFT);
+            this.Mode=mode;
             int viewAbove = ta.GetResourceId(Resource.Styleable.SlidingMenu_viewAbove, -1);
             if (viewAbove != -1)
             {
@@ -536,26 +536,38 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Lib
             return mViewAbove.isSlidingEnabled();
         }
 
-        /**
-         * Sets which side the SlidingMenu should appear on.
-         * @param mode must be either SlidingMenu.LEFT or SlidingMenu.RIGHT
-         */
-        public void setMode(int mode)
-        {
-            if (mode != LEFT && mode != RIGHT && mode != LEFT_RIGHT)
-            {
-                throw new Java.Lang.IllegalStateException("SlidingMenu mode must be LEFT, RIGHT, or LEFT_RIGHT");
-            }
-            mViewBehind.setMode(mode);
-        }
+        ///**
+        // * Sets which side the SlidingMenu should appear on.
+        // * @param mode must be either SlidingMenu.LEFT or SlidingMenu.RIGHT
+        // */
+        //public void setMode(SlidingMenuMode mode)
+        //{
+        //    if (mode != SlidingMenuMode.LEFT && mode != SlidingMenuMode.RIGHT && mode != SlidingMenuMode.LEFT_RIGHT)
+        //    {
+        //        throw new Java.Lang.IllegalStateException("SlidingMenu mode must be LEFT, RIGHT, or LEFT_RIGHT");
+        //    }
+        //    mViewBehind.setMode(mode);
+        //}
 
-        /**
-         * Returns the current side that the SlidingMenu is on.
-         * @return the current mode, either SlidingMenu.LEFT or SlidingMenu.RIGHT
-         */
-        public int getMode()
-        {
-            return mViewBehind.getMode();
+        ///**
+        // * Returns the current side that the SlidingMenu is on.
+        // * @return the current mode, either SlidingMenu.LEFT or SlidingMenu.RIGHT
+        // */
+        //public SlidingMenuMode getMode()
+        //{
+        //    return mViewBehind.getMode();
+        //}
+
+        public SlidingMenuMode Mode {
+            get { return mViewBehind.Mode; }
+            set
+            {
+                if (value != SlidingMenuMode.LEFT && value != SlidingMenuMode.RIGHT && value != SlidingMenuMode.LEFT_RIGHT)
+                {
+                    throw new Java.Lang.IllegalStateException("SlidingMenu mode must be LEFT, RIGHT, or LEFT_RIGHT");
+                }
+                mViewBehind.Mode=value;
+            }
         }
 
         /**
