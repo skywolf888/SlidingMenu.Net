@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="SlidingMenu.Net.Sample" android:versionCode="1" android:versionName="1.0">
 	<uses-sdk android:minSdkVersion="17" android:targetSdkVersion="21" />
-	<application android:label="SlidingMenu.Net.Sample" android:icon="@drawable/Icon"></application>
+	<application android:label="SlidingMenu.Net.Sample" android:icon="@drawable/ic_launcher"></application>
 </manifest>

@@ -47,7 +47,7 @@ using System;
 namespace Com.Jeremyfeinstein.SlidingMenu.Example
 {
 
-    [Activity(Label = "SlidingMenu.Net.Sample", MainLauncher = true, Icon = "@drawable/icon")]
+	[Activity(Label = "SlidingMenu.Net.Sample", MainLauncher = true, Icon = "@drawable/ic_launcher")]
     public class ExampleListActivity : PreferenceActivity
     {
 

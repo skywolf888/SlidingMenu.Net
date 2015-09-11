@@ -14,7 +14,9 @@ namespace Com.Jeremyfeinstein.SlidingMenu.Example
 
         public static void goToGitHub(Context context)
         {
-            Uri uriUrl = Uri.Parse("http://github.com/jfeinstein10/slidingmenu");
+			//
+            //Uri uriUrl = Uri.Parse("http://github.com/jfeinstein10/slidingmenu");
+			Uri uriUrl = Uri.Parse("https://github.com/skywolf888/SlidingMenu.Net");
             Intent launchBrowser = new Intent(Intent.ActionView, uriUrl);
             context.StartActivity(launchBrowser);
         }
